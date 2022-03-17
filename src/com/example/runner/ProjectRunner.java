@@ -6,8 +6,15 @@ import java.net.URL;
 
 public class ProjectRunner {
     public static void main(String[] args) throws IOException {
-        System.out.println("HelloWorld");
+        System.out.print("Downloading File");
         AudioDownload audio = new AudioDownload(new URL("https://retail-music.com/walmart_radio.mp3"));
-        audio.getAudio();
+        FormatAudio formattedAudio;
+
+        audio.downladAudio();
+        formattedAudio = new FormatAudio(audio.getAudioFile());
+
+        formattedAudio.getRAW();
+
+
     }
 }

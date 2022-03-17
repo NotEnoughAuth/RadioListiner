@@ -7,12 +7,14 @@ import java.io.InputStream;
 
 public class AudioDownload {
     URL url;
+    File downloadedAudioFile;
+    final int fileSize = 262144;
 
     public AudioDownload(URL u) {
         url = u;
     }
 
-    public int getAudio() throws IOException {
+    public int downladAudio() throws IOException {
 
         URLConnection conn = url.openConnection();
         InputStream is = conn.getInputStream();
@@ -22,11 +24,21 @@ public class AudioDownload {
 
         byte[] buffer = new byte[4096];
         int len = is.read(buffer);
-        while (audioFile.length() < 262144) {
+        while (audioFile.length() < fileSize) {
+            if ((audioFile.length() % (fileSize/8)) == 0)
+                System.out.print("*");
             len = is.read(buffer);
             outstream.write(buffer, 0, len);
         }
         outstream.close();
+
+        downloadedAudioFile = audioFile;
+
         return 1;
+    }
+
+    public File getAudioFile()
+    {
+        return downloadedAudioFile;
     }
 }
