@@ -14,8 +14,7 @@ public class ProjectRunner {
         audio.downladAudio();
         formattedAudio = new FormatAudio(audio.getAudioFile());
 
-        formattedAudio.getAudioDataBytes(new AudioFormat(44100, 8, 1, false, false));
-        formattedAudio.getRAW();
+        formattedAudio.mp3ToWav(audio.getAudioFile());
 
 
     }
